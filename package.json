@@ -30,7 +30,14 @@
     "electron:serve": "set PORT=10801 && concurrently -k \"cross-env BROWSER=none npm start\" \"npm run electron:start\"",
     "electron:build": "yarn build && electron-builder -c.extraMetadata.main=build/electron.js",
     "electron:start": "wait-on tcp:3000 && electron .",
-    "electron:deploy": "electron-builder build --win --publish always"
+    "electron:deploy": "electron-builder build --win --publish always",
+
+
+    "forge-start": "electron-forge start",
+    "forge-package": "electron-forge package",
+    "forge-make": "electron-forge make",
+    "forge-publish": "electron-forge publish",
+    "lint": "echo \"No linting configured\""
   },
   "build": {
     "appId": "com.storelite.pnex",

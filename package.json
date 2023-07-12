@@ -1,5 +1,5 @@
 {
-  "name": "used-book",
+  "name": "electron-reactjs-autoupdate",
   "version": "0.1.0",
   "private": true,
   "license": "ISC",
@@ -19,8 +19,8 @@
   },
   "main": "public/electron.js",
   "homepage": "./",
-  "productName": "Used Books Directory",
-  "description": "Used Books Directory",
+  "productName": "Electron Reactjs Auto Update",
+  "description": "Electron Reactjs Auto Update",
   "author": "Peter Emerike",
   "scripts": {
     "start": "react-scripts start",
@@ -28,16 +28,25 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "electron:serve": "set PORT=10801 && concurrently -k \"cross-env BROWSER=none npm start\" \"npm run electron:start\"",
-    "electron:build": "yarn build && electron-builder -c.extraMetadata.main=build/main.js",
+    "electron:build": "yarn build && electron-builder -c.extraMetadata.main=build/electron.js",
     "electron:start": "wait-on tcp:3000 && electron .",
-    "electron:deploy": "electron-builder build --win --publish always",
+    "electron:deploy": "electron-builder build --win --publish always"
   },
   "build": {
     "appId": "com.storelite.pnex",
     "extends": null,
+    "compression": "maximum",
     "files": [
       "./build/**/*",
       "./public/electron.js"
+    ],
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "Acux-Stack",
+        "repo": "/https://github.com/Acux-Stack/electron-reactjs-autoupdate",
+        "token": "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"
+      }
     ]
   },
   "eslintConfig": {

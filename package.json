@@ -1,7 +1,7 @@
 {
   "name": "electron-reactjs-autoupdate",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "license": "ISC",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
@@ -31,13 +31,26 @@
     "electron:build": "yarn build && electron-builder -c.extraMetadata.main=build/electron.js",
     "electron:start": "wait-on tcp:3000 && electron .",
     "electron:deploy": "electron-builder build --win --publish always",
-
-
     "forge-start": "electron-forge start",
     "forge-package": "electron-forge package",
     "forge-make": "electron-forge make",
     "forge-publish": "electron-forge publish",
     "lint": "echo \"No linting configured\""
+  },
+  "config": {
+    "forge": {
+      "publishers": [
+        {
+          "name": "@electron-forge/publisher-github",
+          "config": {
+            "repository": {
+              "owner": "Acux-Stack",
+              "name": "electron-publish-example"
+            }
+          }
+        }
+      ]
+    }
   },
   "build": {
     "appId": "com.storelite.pnex",
@@ -51,8 +64,8 @@
       {
         "provider": "github",
         "owner": "Acux-Stack",
-        "repo": "/https://github.com/Acux-Stack/electron-reactjs-autoupdate",
-        "token": "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"
+        "repo": "electron-reactjs-autoupdate",
+        "token": "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"
       }
     ]
   },
@@ -75,6 +88,7 @@
     ]
   },
   "devDependencies": {
+    "@electron-forge/publisher-github": "^6.2.1",
     "electron": "^25.2.0",
     "electron-builder": "^24.4.0"
   }

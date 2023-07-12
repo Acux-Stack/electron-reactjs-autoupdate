@@ -7,6 +7,7 @@ function App() {
       <header className="header-bar">
         <h2>React and Electron App</h2>
       </header>
+      <h6>Testing electron and reactjs app</h6>
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.

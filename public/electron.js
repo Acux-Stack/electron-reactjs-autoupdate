@@ -6,7 +6,15 @@ let mainWindow;
 
 function createWindow () {
   mainWindow = new BrowserWindow({
-    frame: false,
+    frame: true,
+    alwaysOnTop:false,
+    hasShadow:true,
+    roundedCorners:true,
+    thickFrame:true,
+    minHeight:600,
+    minWidth:800,
+    icon:path.join(__dirname, 'stoms-icon.ico'),
+    resizable:false,
     titleBarStyle: 'hidden',
     width: 800,
     height: 600,

@@ -1,40 +1,59 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
+const { app, BrowserWindow, ipcMain, Tray, Menu, nativeImage } = require('electron');
+const { setupTitlebar, attachTitlebarToWindow } = require("custom-electron-titlebar/main");
+
+let tray
 const { autoUpdater } = require('electron-updater');
 const path = require('path')
 
 let mainWindow;
 
-function createWindow () {
+function createWindow() {
   mainWindow = new BrowserWindow({
-    frame: true,
-    alwaysOnTop:false,
-    hasShadow:true,
-    roundedCorners:true,
-    thickFrame:true,
-    minHeight:600,
-    minWidth:800,
-    icon:path.join(__dirname, 'stoms-icon.ico'),
-    resizable:false,
-    titleBarStyle: 'hidden',
+    frame:false,
+    // flashFrame: false,
+    // alwaysOnTop:false,
     width: 800,
     height: 600,
+    minHeight: 600,
+    minWidth: 800,
+    transparent: true,
+    // resizable: true,
+    titleBarStyle: 'hidden',
+    titleBarOverlay: true,
+    titleBarOverlay: {
+      color: '#022771',
+      symbolColor: '#fff',
+      height: 30
+    },
     webPreferences: {
-      nodeIntegration: true,
+      preload: path.join(__dirname, 'preload.js')
     },
   });
-//   mainWindow.loadFile('index.html');
   mainWindow.loadFile(path.join(__dirname, 'index.html'));
+
   mainWindow.on('closed', function () {
     mainWindow = null;
   });
+
   mainWindow.once('ready-to-show', () => {
     autoUpdater.checkForUpdatesAndNotify();
   });
+
+  mainWindow.once('focus', () => mainWindow.flashFrame(false))
+  mainWindow.flashFrame(false)
+  attachTitlebarToWindow(mainWindow);
 }
 
-app.on('ready', () => {
+Menu.setApplicationMenu(null)
+
+app.on('ready', () =>{
+  autoUpdater.checkForUpdatesAndNotify();
   createWindow();
 });
+
+// app.on('ready-to-show', () => {
+//     createWindow();
+// });
 
 app.on('window-all-closed', function () {
   if (process.platform !== 'darwin') {

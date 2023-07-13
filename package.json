@@ -4,12 +4,15 @@
   "private": false,
   "license": "ISC",
   "dependencies": {
+    "@electron/remote": "^2.0.10",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "concurrently": "^8.2.0",
     "cross-env": "^7.0.3",
+    "custom-electron-titlebar": "^4.2.3",
     "electron-updater": "^6.1.1",
+    "path": "^0.12.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
@@ -67,7 +70,14 @@
         "repo": "electron-reactjs-autoupdate",
         "token": "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"
       }
-    ]
+    ],
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowElevation": true,
+      "allowToChangeInstallationDirectory": true,
+      "deleteAppDataOnUninstall":true
+    }
   },
   "eslintConfig": {
     "extends": [
@@ -89,7 +99,7 @@
   },
   "devDependencies": {
     "@electron-forge/publisher-github": "^6.2.1",
-    "electron": "^25.2.0",
+    "electron": "^25.3.0",
     "electron-builder": "^24.4.0"
   }
 }

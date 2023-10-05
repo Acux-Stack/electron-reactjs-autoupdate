@@ -99,7 +99,7 @@
   },
   "devDependencies": {
     "@electron-forge/publisher-github": "^6.2.1",
-    "electron": "^25.3.0",
+    "electron": "^25.8.4",
     "electron-builder": "^24.4.0"
   }
 }
